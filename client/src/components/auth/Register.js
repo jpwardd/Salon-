@@ -1,28 +1,68 @@
 import React, { useState, Fragment} from 'react'
 import styled  from 'styled-components'
-import { Box, FormField, TextInput, Button, Form, Image} from 'grommet';
+import { Box, FormField, TextInput, Form } from 'grommet';
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setAlert, register } from '../../actions'
 import PropTypes from 'prop-types'
 import Alert from '../layout/Alert'
+import { media, logoURL} from '../../media'
+import Button from '../Button'
 
-const LoginContainer = styled.div `
-  min-width: 300px;
-  width: 30%;
+const Container = styled.div `
+  ackground-color: #ffffff;
   padding: 10px;
-  height: 50%;
-  margin: 100px 300px;
+  margin-top: 50px;
   border: 1px solid #E6E6E6;
-  border-radius: 10px;
-  background: white;
-  border-bottom: 20px solid #dc7f9b;
+  ${media.desktop`
+    width: 30%;
+  `
+  }
+  ${media.tablet`
+    width: 90%;
+  `
+  }
+  ${media.phone`
+    width: 90%;
+  `
+  }
 `
 const InputContainer = styled.div `
-  background: white;
+  background: #ffffff;
   border-radius: 8px;
   padding: 20px;
+  img {
+    width: 200px;
+    height: 200px;
+  }
 
+`
+
+const RegisterOrLogin = styled.div`
+  border: 1px solid #E6E6E6;
+  margin-top: 20px;
+  margin: 20px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-bottom: 20px solid black;
+
+  ${media.desktop`
+    width: 30%;
+  `
+  }
+  ${media.tablet`
+    width: 90%;
+  `
+  }
+  ${media.phone`
+    width: 90%;
+  `
+  }
+
+  h3 {
+    color: #AAAAAA;
+    text-align: center;
+  }
 `
 
 
@@ -42,6 +82,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
   const onSubmit = e => {
     e.preventDefault();
+  
     if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
     } else {
@@ -57,60 +98,72 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     <Fragment>
 
     <Box align="center" style={{ background: '#fafafa' }}>
-      <LoginContainer>
+      <Container>
         <InputContainer>
           <Box align="center">
+            <img src={logoURL} alt="Salon Industria Logo"/>
             <h3>Salon Tickets</h3>
           </Box>
           <Form onSubmit={e => onSubmit(e)}>
 
-            <FormField label="name">
+            <FormField>
               <TextInput
                 type="text"
                 name="name"
+                placeholder="name"
                 value={name}
                 onChange={e => onChange(e)}
               />
             </FormField>
 
-            <FormField label='email'>
+            <FormField>
             <TextInput
               type="email"
               name="email"
+              placeholder="email"
               value={email}
               onChange={e => onChange(e)}
             />
           </FormField>
 
-          <FormField label='password'>
+          <FormField>
             <TextInput
               type="password"
               name="password"
+              placeholder="password"
               value={password}
               onChange={e => onChange(e)}
             />
           </FormField>
 
-          <FormField label='re-enter password'>
+          <FormField>
             <TextInput
               type="password"
               name="password2"
+              placeholder="re-enter password"
               value={password2}
               onChange={e => onChange(e)}
             />
           </FormField>
+           <Button 
+              buttonText="Register"
+              style={{ width: '100%', height: 40, backgroundColor: 'black', color: 'white', fontSize: 18}}
+              type="submit"
+            />
            <Alert />
-          <Button type="submit" alignSelf="end" label="Submit" />
+
           </Form>
        
 
         </InputContainer>
       
-            <h3 style={{ color: 'black'}}>already have an account?  <Link style={{ color: 'black'}} to="/">sign in</Link></h3>
           
-          
-      </LoginContainer>
+      </Container>
+          <RegisterOrLogin>
+            <h3 style={{ color: 'black'}}>already have an account?  <Link style={{ color: '#dc7f9b'}} to="/">sign in</Link></h3>
+          </RegisterOrLogin>
     </Box>
+          
     </Fragment>
   )
 }
