@@ -8,12 +8,14 @@ import PropTypes from 'prop-types'
 import Alert from '../layout/Alert'
 import { media, logoURL} from '../../media'
 import Button from '../Button'
+import Image from '../Image'
 
 const Container = styled.div `
-  ackground-color: #ffffff;
+  background-color: #ffffff;
   padding: 10px;
   margin-top: 50px;
   border: 1px solid #E6E6E6;
+  ${'' /* box-shadow: 0 2px 5px 0 rgba(0,0,0,.26); */}
   ${media.desktop`
     width: 30%;
   `
@@ -45,7 +47,7 @@ const RegisterOrLogin = styled.div`
   padding: 10px;
   background-color: #ffffff;
   border-bottom: 20px solid black;
-
+  ${'' /* box-shadow: 0 2px 5px 0 rgba(0,0,0,.26); */}
   ${media.desktop`
     width: 30%;
   `
@@ -101,7 +103,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
       <Container>
         <InputContainer>
           <Box align="center">
-            <img src={logoURL} alt="Salon Industria Logo"/>
+            <Image source={logoURL} alt="Salon Industria Logo"/>
             <h3>Salon Tickets</h3>
           </Box>
           <Form onSubmit={e => onSubmit(e)}>
@@ -160,7 +162,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
           
       </Container>
           <RegisterOrLogin>
-            <h3 style={{ color: 'black'}}>already have an account?  <Link style={{ color: '#dc7f9b'}} to="/">sign in</Link></h3>
+            <h3>already have an account?  <Link style={{ color: '#dc7f9b'}} to="/">sign in</Link></h3>
           </RegisterOrLogin>
     </Box>
           

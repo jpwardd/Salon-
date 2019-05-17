@@ -1,5 +1,5 @@
 {
-  "name": "reactexpress",
+  "name": "Salon-Tickets",
   "version": "1.0.0",
   "description": "Starter kit for creating React and Express apps",
   "main": "server.js",
@@ -19,10 +19,13 @@
     "bcryptjs": "^2.4.3",
     "concurrently": "^3.5.1",
     "config": "^3.1.0",
+    "css-loader": "^2.1.1",
     "express": "^4.16.4",
     "express-validator": "^5.3.1",
     "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.11",
     "mongoose": "^5.5.5",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "style-loader": "^0.23.1"
   }
 }
