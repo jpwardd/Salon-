@@ -7,6 +7,7 @@ import { setAlert, login } from '../../actions'
 import PropTypes from 'prop-types'
 import Alert from '../layout/Alert'
 import Button from '../Button'
+import Image from '../Image'
 import { media, logoURL} from '../../media'
 
 const LoginContainer = styled.div `
@@ -101,11 +102,8 @@ const Login = ({ setAlert, login, isAuthenticated }) => {
       >
         <LoginContainer>
           <InputContainer>
-            <Box 
-              align="center"
-              animation="slideUp"
-            >
-              <img src={logoURL} alt="Salon Industria Logo"/>
+            <Box align="center">
+              <Image source={logoURL} alt="Salon Industria Logo"/>
               <h3>Ticket Manager</h3>
             </Box>
             <Form onSubmit={e => onSubmit(e)}>
