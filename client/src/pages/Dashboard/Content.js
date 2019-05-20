@@ -1,11 +1,10 @@
-import React, { Fragment } from 'react'
-import { Box } from 'grommet'
+import React from 'react'
 
 const Content = (props) => {
   return (
-    <main>
+    <div className="content">
       main
-    </main>
+    </div>
   )
 }
 

@@ -15,8 +15,7 @@ const SideNav = () => {
       <Image source={logoURL} className="company-logo" />
       <div className="link-container">
         <Button buttonText="employees" className="nav-links"/>
-        <Button buttonText="hello" className="nav-links" />
-        <Button buttonText="hello" className="nav-links"/>
+        <Button buttonText="services" className="nav-links" />
       </div>
     </div> 
   )
