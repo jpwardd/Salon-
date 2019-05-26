@@ -14,7 +14,7 @@ const Container = styled.div `
   background-color: #ffffff;
   padding: 10px;
   margin-top: 50px;
-  border: 1px solid #E6E6E6;
+  border: 1px solid black;
   ${'' /* box-shadow: 0 2px 5px 0 rgba(0,0,0,.26); */}
   ${media.desktop`
     width: 30%;
@@ -41,7 +41,7 @@ const InputContainer = styled.div `
 `
 
 const RegisterOrLogin = styled.div`
-  border: 1px solid #E6E6E6;
+  border: 1px solid black;
   margin-top: 20px;
   margin: 20px;
   padding: 10px;
@@ -162,7 +162,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
           
       </Container>
           <RegisterOrLogin>
-            <h3>already have an account?  <Link style={{ color: '#dc7f9b'}} to="/">sign in</Link></h3>
+            <h3>already have an account?  <Link style={{ color: '#dc7f9b', textDecoration: 'none'}} to="/">sign in</Link></h3>
           </RegisterOrLogin>
     </Box>
           

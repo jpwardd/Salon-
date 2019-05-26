@@ -14,7 +14,8 @@ const LoginContainer = styled.div `
   background-color: #ffffff;
   padding: 10px;
   margin-top: 50px;
-  border: 1px solid #E6E6E6;
+  border: 1px solid black;
+  margin-top: 150px;
   ${media.desktop`
     width: 30%;
   `
@@ -41,7 +42,7 @@ const InputContainer = styled.div `
 `
 
 const NeedAccount = styled.div`
-  border: 1px solid #E6E6E6;
+  border: 1px solid black;
   margin-top: 20px;
   margin: 20px;
   padding: 10px;
@@ -95,6 +96,7 @@ const Login = ({ setAlert, login, isAuthenticated }) => {
     return <Redirect to="/dashboard" />
   }
 
+
   return (
     <Fragment>
       <Box 
@@ -147,7 +149,7 @@ const Login = ({ setAlert, login, isAuthenticated }) => {
     
       >
         <NeedAccount>
-          <h3>Don't have an account?  <Link style={{ color: '#dc7f9b'}} to="/register">sign up</Link></h3>
+          <h3>Don't have an account?  <Link style={{ color: '#dc7f9b', textDecoration: 'none'}} to="/register">sign up</Link></h3>
         </NeedAccount>
    
       </Box>

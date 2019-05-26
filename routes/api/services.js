@@ -7,7 +7,6 @@ const config = require('config');
 
 const Service = require('../../models/Service');
 
-
 // POST api/services
 // update and create services
 // @access privet
@@ -17,7 +16,7 @@ router.post('/', [ auth, [
     .isEmpty(),
   check('price', 'Price is required')
     .not()
-    .isEmpty()
+    .isEmpty(),
 ]], async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -33,18 +32,6 @@ router.post('/', [ auth, [
   if (price) serviceFields.price = price;
 
   try {
-    let service = await Service.findOne({ user: req.user.id })
-    if (service) {
-      // Update
-      service = await Service.findOneAndUpdate(
-        { user: req.user.id },
-        { $set: serviceFields },
-        { new: true }
-      );
-      
-      return res.json(service);
-    }
-
     // Create
     service = new Service(serviceFields);
     await service.save();
@@ -59,9 +46,9 @@ router.post('/', [ auth, [
 // description: get all of the services
 // @access private
 
-router.get('/', auth, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const services = await Service.find({ user: req.user.id }).populate('service', ['name', 'price'])
+    const services = await Service.find()
     res.json(services)
   } catch (err) {
     console.error(err.message);
