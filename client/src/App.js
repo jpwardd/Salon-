@@ -1,27 +1,52 @@
-import React, { useEffect } from 'react';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import './components/layout/navbar.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Dashboard from './pages/Dashboard/index'
+import Services from './pages/Services/Services'
 import { Provider } from 'react-redux'
 import store from './store'
 import { loadUser } from './actions/auth'
+import NavBar from './components/layout/NavBar';
+import SideDrawer from './components/SideDrawer/SideDrawer';
+import Backdrop from './components/Backdrop/Backdrop'
+import PrivateRoute from './components/routing/PrivateRoute'
+
 
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
   }, [])
+  
+   const [toggle, setToggle] = useState(false)
+
+  const drawerToggle = () => {
+    setToggle(!toggle)
+  }
+
+  let backdrop;
+
+  if (toggle) {
+    backdrop = <Backdrop click={drawerToggle} />
+  }
+
+
   return(
     <Provider store={store}>
-
-    <Router>
-      <Switch>
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/dashboard" component={Dashboard} />
-      </Switch>
-    </Router>
+      <Router>
+       <div className="container">
+         <NavBar drawerClickHandler={drawerToggle} />
+         <SideDrawer show={toggle} />
+         {backdrop}
+       </div>
+        <Switch>
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute exact path="/services" component={Services} />
+        </Switch>
+      </Router>
     </Provider>
   )
 }

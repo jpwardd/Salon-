@@ -10,28 +10,25 @@ import Backdrop from '../../components/Backdrop/Backdrop';
 
 const Dashboard = () => {
 
-  const [toggle, setToggle] = useState(false)
+  // const [toggle, setToggle] = useState(false)
 
 
-  const drawerClickHandler = () => {
-    setToggle(!toggle)
-  }
+  // const drawerClickHandler = () => {
+  //   setToggle(!toggle)
+  // }
 
-  const backdropClickHandler = () => {
-    setToggle(!toggle)
-  }
+  // const backdropClickHandler = () => {
+  //   setToggle(!toggle)
+  // }
 
-  let backdrop;
+  // let backdrop;
 
-  if (toggle) {
-    backdrop = <Backdrop click={backdropClickHandler} />
-  }
+  // if (toggle) {
+  //   backdrop = <Backdrop click={backdropClickHandler} />
+  // }
 
   return (
-    <div className="container">
-      <NavBar drawerClickHandler={drawerClickHandler} />
-     <SideDrawer show={toggle} />
-     {backdrop}
+    <div>
       <main className="content">
         <Content />
       </main>
