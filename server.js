@@ -9,6 +9,7 @@ connectDB();
 app.use(express.json({ extended: false }));
 
 app.use('/api/users', require('./routes/api/users'));
+app.use('/api/employees', require('./routes/api/employees'))
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/services', require('./routes/api/services'))
 

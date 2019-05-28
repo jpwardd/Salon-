@@ -3,7 +3,7 @@ import styled  from 'styled-components'
 import { Box, FormField, TextInput, Form } from 'grommet';
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { setAlert, login } from '../../actions'
+import { setAlert, loginUser } from '../../actions'
 import PropTypes from 'prop-types'
 import Alert from '../layout/Alert'
 import Button from '../Button'
@@ -69,7 +69,7 @@ const NeedAccount = styled.div`
 `
 
 
-const Login = ({ setAlert, login, isAuthenticated }) => {
+const Login = ({ setAlert, loginUser, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -88,7 +88,8 @@ const Login = ({ setAlert, login, isAuthenticated }) => {
     if (password === '') {
       setAlert('Please enter your password', 'danger')
     }
-    login(email, password);
+    // loginUser(email, password);
+    loginUser(email, password);
   }
 
   // Redirect if logged in
@@ -159,7 +160,7 @@ const Login = ({ setAlert, login, isAuthenticated }) => {
 
 Login.propTypes = {
   setAlert: PropTypes.func.isRequired,
-  login: PropTypes.func.isRequired,
+  loginUser: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
 }
 
@@ -167,4 +168,4 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 })
 
-export default connect(mapStateToProps, { setAlert, login })(Login)
+export default connect(mapStateToProps, { setAlert, loginUser })(Login)

@@ -17,6 +17,7 @@ const NavBar = ({ auth: { isAuthenticated, loading }, drawerClickHandler}) => {
           <Link to="/services">services</Link>
           <Link to="/employees">employees</Link>
           <Link to="/contacts">contacts</Link>
+
         </ul>
       </div>
       <div className="navbar-toggle-button">
