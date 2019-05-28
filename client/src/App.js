@@ -8,10 +8,12 @@ import Services from './pages/Services/Services'
 import { Provider } from 'react-redux'
 import store from './store'
 import { loadUser } from './actions/auth'
+
 import NavBar from './components/layout/NavBar';
 import SideDrawer from './components/SideDrawer/SideDrawer';
 import Backdrop from './components/Backdrop/Backdrop'
 import PrivateRoute from './components/routing/PrivateRoute'
+import AddNewService from './pages/Services/AddNewService'
 
 
 const App = () => {
@@ -45,6 +47,7 @@ const App = () => {
           <Route exact path="/register" component={Register} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute exact path="/services" component={Services} />
+          <PrivateRoute exact path="/services/new" component={AddNewService} />
         </Switch>
       </Router>
     </Provider>
