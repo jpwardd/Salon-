@@ -1,14 +1,13 @@
 import {
-  CREATE_SERVICE_SUCCESS,
-  GET_SERVICES,
-  SERVICE_ERROR
+  CREATE_CLIENT_SUCCESS,
+  GET_CLIENTS,
+  CLIENT_ERROR
 } from '../actions/types'
 
 
 const initialState = {
-  token: localStorage.getItem('token'),
-  services: [],
-  service: null,
+  contacts: [],
+  contact: null,
   loading: true,
   error: {}
 }
@@ -17,11 +16,11 @@ export default function(state = initialState, action) {
   const { type, payload} = action;
 
   switch(type) {
-    case CREATE_SERVICE_SUCCESS:
+    case CREATE_CLIENT_SUCCESS:
       return { ...state, ...payload }
-    case GET_SERVICES:
-      return { ...state, services: payload, loading: false }
-    case SERVICE_ERROR:
+    case GET_CLIENTS:
+      return { ...state, contacts: payload, loading: false }
+    case CLIENT_ERROR:
       return { ...state, error: payload, loading: false}
     default:
       return state

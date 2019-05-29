@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import './Services.css'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import Button from '../../components/Button'
 import { connect } from 'react-redux'
-import { setAlert, createService, getServices } from '../../actions'
+import { getServices} from '../../actions'
 
 
-const Services = ({createService, getServices, setAlert, service: { services, loading}}) => {
+const Services = ({ getServices, setAlert, service: { services, loading} }) => {
    useEffect(() => {
+    
      getServices()
-   }, [getServices])
+    }, [getServices])
 
-
-
+   
   return (
     <div className="container">
 
@@ -37,6 +36,7 @@ Services.propTypes = {
 
 
 const mapStateToProps = state => ({
-  service: state.service
+  service: state.service,
+  user: state.auth
 })
 export default connect(mapStateToProps, { getServices })(Services)

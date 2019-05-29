@@ -28,11 +28,9 @@ const App = () => {
   }
 
   let backdrop;
-
   if (toggle) {
     backdrop = <Backdrop click={drawerToggle} />
   }
-
 
   return(
     <Provider store={store}>

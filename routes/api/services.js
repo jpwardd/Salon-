@@ -9,7 +9,7 @@ const Service = require('../../models/Service');
 
 // POST api/services
 // update and create services
-// @access privet
+// @access private
 router.post('/', [ auth, [
   check('name', 'Name is required')
     .not()
@@ -46,9 +46,9 @@ router.post('/', [ auth, [
 // description: get all of the services
 // @access private
 
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
   try {
-    const services = await Service.find()
+    const services = await Service.find({ user: req.user.id}).populate('service', ['name', 'price'])
     res.json(services)
   } catch (err) {
     console.error(err.message);
@@ -60,21 +60,27 @@ router.get('/', async (req, res) => {
 // description: get service by user ID
 // @access private
 
-router.get('/user/:user_id', auth, async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
   try {
-    const service = await Service.findOne({ user: req.params.user_id }).populate('service', ['name', 'price'])
+    const service = await Service.findById(req.params.id)
     
     if (!service) {
       return res.status(400).json({ msg: 'Service not found'})
     }
 
+    if (service.user.toString() !== req.user.id) {
+     return res.status(401).json({ msg: 'User not authorized' })
+
+   }
+
     res.json(service)
 
   } catch (err) {
     if(err.kind == 'ObjectId') {
-       return res.status(400).json({ msg: 'Service not found'})
+       return res.status(404).json({ msg: 'Service not found'})
     }
     console.error(err.message);
+
     res.status(500).send('Server error')
   }
 });
@@ -83,18 +89,26 @@ router.get('/user/:user_id', auth, async (req, res) => {
 // DELETE api/services 
 // description: delete user, services & tickets 
 // @access Private
-router.delete('/', auth, async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
   try {
-    //@todo - remove users tickets
-    // Remove profile
-    await Service.findOneAndRemove({ user: req.user.id });
-    // Remove user
-    await User.findOneAndRemove({ _id: req.user.id });
+   const service = Service.find(req.params.id);
 
+    if(!service) {
+       return res.status(404).json({ msg: 'Service not found'})
+    }
 
-    res.json({ msg: 'User deleted'})
+   if (service.user.toString() !== req.user.id) {
+     return res.status(401).json({ msg: 'User not authorized' })
+
+   }
+
+   await post.remove();
+   res.json({ msg: 'Service removed' })
   } catch (err) {
     console.error(err.message);
+     if(err.kind == 'ObjectId') {
+       return res.status(404).json({ msg: 'Service not found'})
+    }
     res.status(500).send('Server error')
   }
 });

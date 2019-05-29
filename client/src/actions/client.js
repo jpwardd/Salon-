@@ -1,27 +1,27 @@
-import { 
-  CREATE_SERVICE_SUCCESS, 
-  GET_SERVICES,
-  SERVICE_ERROR
-} from './types'
-import axios from 'axios'
+import {
+  CREATE_CLIENT_SUCCESS,
+  GET_CLIENTS,
+  CLIENT_ERROR,
+} from '../actions/types';
+import axios from 'axios';
 import { setAlert } from './alert'
 import { loadUser } from './auth'
 
-// Create a new service
-export const createService = (name, price) => async dispatch => {
+
+export const createClient = (firstName, lastName, phoneNumber, email, employee) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   }
 
- const body = JSON.stringify({ name, price })
+ const body = JSON.stringify({ firstName, lastName, phoneNumber, email, employee })
 
   try {
-    const res = await axios.post('/api/services', body, config)
+    const res = await axios.post('/api/contacts', body, config)
 
     dispatch({
-      type:  CREATE_SERVICE_SUCCESS,
+      type:  CREATE_CLIENT_SUCCESS,
       payload: res.data
     })
   } catch (err) {
@@ -31,26 +31,26 @@ export const createService = (name, price) => async dispatch => {
       errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
     }
     dispatch({
-      type: SERVICE_ERROR
+      type: CLIENT_ERROR
     })
   }
 }
 
-// GET services
+// GET contacts
 
-export const getServices = () => async dispatch => {
+export const getClients = () => async dispatch => {
   dispatch(loadUser())
   try {
-    const res = await axios.get(`/api/services`)
+    const res = await axios.get('/api/contacts')
 
     dispatch({
-      type: GET_SERVICES,
+      type: GET_CLIENTS,
       payload: res.data
     })
 
   } catch (err) {
     dispatch({
-      type: SERVICE_ERROR,
+      type: CLIENT_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status}
     })
   }
