@@ -10,11 +10,13 @@ const TicketSchema = new mongoose.Schema({
     default: Date.now
   },
   services: {
-    type: [String],
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'service',
     required: true
   },
-  client: {
-    type: String,
+  contact: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'contact',
     required: true
   }
 })
