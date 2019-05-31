@@ -6,7 +6,6 @@ import {
 
 
 const initialState = {
-  token: localStorage.getItem('token'),
   services: [],
   service: null,
   loading: true,

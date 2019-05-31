@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react'
 import styled from 'styled-components'
-import { Form, FormField, TextInput } from 'grommet'
+import { Form, FormField, TextInput, Box } from 'grommet'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import Button from '../../components/Button'
@@ -13,16 +13,14 @@ const FormContainer = styled.div`
 `
 
 const AddNewService = ({createService, setAlert, history}) => {
-   useEffect(() => {
-     getServices()
-   }, [getServices])
-
+  
   const [formData, setFormData] = useState({
     name: '',
-    price: ''
+    price: '',
+    category: ''
   })
 
-  const { name, price } = formData
+  const { name, price, category } = formData
 
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
@@ -35,32 +33,42 @@ const AddNewService = ({createService, setAlert, history}) => {
     if (price === '') { 
       setAlert('Price is required', 'danger')
     }
+
+    if (category === '') {
+      setAlert('Categories are required', 'danger')
+    }
     
-    createService(name, price)
+    createService(name, price, category)
     history.push('/services')
   }
  
+  console.log(category)
   return (
-    
     <FormContainer>
+
       <h3>Add A Service</h3>
        <Form onSubmit={e => onSubmit(e)}>
-        <FormField>
           <TextInput 
             onChange={e => onChange(e)}
             placeholder="name"
             name="name"
             value={name}
           />
-        </FormField>
-        <FormField>
+     
           <TextInput 
              onChange={e => onChange(e)}
             placeholder="price"
             name="price"
             value={price}
           />
-        </FormField>
+   
+          <TextInput 
+            onChange={e => onChange(e)}
+            placeholder="category"
+            name="category"
+            value={category}
+          />
+      
         <Button 
           buttonText="add"
            style = {{ width: '100%', height: 40, backgroundColor: 'black', color: 'white', fontSize: 18}}
@@ -68,6 +76,7 @@ const AddNewService = ({createService, setAlert, history}) => {
         />
       </Form>
   
+    
     </FormContainer>
   )
 }

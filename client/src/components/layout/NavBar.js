@@ -16,7 +16,7 @@ const NavBar = ({ auth: { isAuthenticated, loading }, drawerClickHandler}) => {
         <ul>
           <Link to="/services">services</Link>
           <Link to="/employees">employees</Link>
-          <Link to="/contacts">contacts</Link>
+          
 
         </ul>
       </div>

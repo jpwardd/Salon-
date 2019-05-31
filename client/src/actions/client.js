@@ -41,7 +41,7 @@ export const createClient = (firstName, lastName, phoneNumber, email, employee) 
 export const getClients = () => async dispatch => {
   dispatch(loadUser())
   try {
-    const res = await axios.get('/api/contacts')
+    const res = await axios.get('/api/clients')
 
     dispatch({
       type: GET_CLIENTS,

@@ -11,7 +11,7 @@ router.post('/', [ auth, [
   check('services', 'Please add a service')
     .not()
     .isEmpty(),
-  check('contact', 'Please add a contact')
+  check('client', 'Please add a client')
     .not()
     .isEmpty(),
 ]], async (req, res) => {
@@ -19,14 +19,16 @@ router.post('/', [ auth, [
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  const { services, contact } = req.body;
+  const { services, client, bookingInfo, date } = req.body;
   
   const ticketFields = {}
   
   ticketFields.user = req.user.id;
 
   if (services) ticketFields.services = services;
-  if (contact) ticketFields.contact = contact;
+  if (client) ticketFields.client = client;
+  if (bookingInfo) ticketFields.bookingInfo = bookingInfo;
+  if (date) ticketFields.date = date;
 
   try {
     // Create
