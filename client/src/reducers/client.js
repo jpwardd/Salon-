@@ -6,8 +6,8 @@ import {
 
 
 const initialState = {
-  contacts: [],
-  contact: null,
+  clients: [],
+  client: null,
   loading: true,
   error: {}
 }
@@ -19,7 +19,7 @@ export default function(state = initialState, action) {
     case CREATE_CLIENT_SUCCESS:
       return { ...state, ...payload }
     case GET_CLIENTS:
-      return { ...state, contacts: payload, loading: false }
+      return { ...state, clients: payload, loading: false }
     case CLIENT_ERROR:
       return { ...state, error: payload, loading: false}
     default:

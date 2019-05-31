@@ -8,14 +8,14 @@ import { setAlert } from './alert'
 import { loadUser } from './auth'
 
 // Create a new service
-export const createService = (name, price) => async dispatch => {
+export const createService = (name, price, category) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   }
 
- const body = JSON.stringify({ name, price })
+ const body = JSON.stringify({ name, price, category })
 
   try {
     const res = await axios.post('/api/services', body, config)

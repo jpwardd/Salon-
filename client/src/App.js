@@ -14,6 +14,7 @@ import SideDrawer from './components/SideDrawer/SideDrawer';
 import Backdrop from './components/Backdrop/Backdrop'
 import PrivateRoute from './components/routing/PrivateRoute'
 import AddNewService from './pages/Services/AddNewService'
+import CreateTicket from './pages/Tickets/CreateTicket'
 
 
 const App = () => {
@@ -41,11 +42,13 @@ const App = () => {
          {backdrop}
        </div>
         <Switch>
+          <Route exact path="/" component={Login} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute exact path="/services" component={Services} />
           <PrivateRoute exact path="/services/new" component={AddNewService} />
+          <PrivateRoute exact path="/tickets/create" component={CreateTicket} />
         </Switch>
       </Router>
     </Provider>

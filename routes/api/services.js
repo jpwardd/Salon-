@@ -22,7 +22,7 @@ router.post('/', [ auth, [
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  const { name, price } = req.body;
+  const { name, price, category } = req.body;
   
   const serviceFields = {}
   
@@ -30,6 +30,7 @@ router.post('/', [ auth, [
 
   if (name) serviceFields.name = name;
   if (price) serviceFields.price = price;
+  if (category) serviceFields.category = category;
 
   try {
     // Create
