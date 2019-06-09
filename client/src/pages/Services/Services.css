@@ -1,27 +1,75 @@
 .container {
   display: grid;
-  margin-top: 100px;
+  margin: 50px 50px;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
   justify-items: center;
-
+  grid-gap: 10px;
+ 
+  box-shadow: 1px 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .form-container {
-   width: 75%;
-   border: 1px solid black;
-   padding: 20px;
- 
+  width: 75%;
+  border: 1px solid black;
+  padding: 20px;
+  
 }
 
 .list-container {
-  
   padding: 20px;
   width: 75%;
 }
+.title {
+  font-family: 'Pacifico', cursive;
+  padding: 0;
+  margin: 0;
+}
 
-.services {
-  border: 1px solid black;
+
+.add-service {
+  font-family: 'Pacifico', cursive;
+  text-decoration: none;
+  color: white;
+  font-size: 30px;
+}
+
+.button-container {
+  background: black;
+  width: 50%;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.service-cards {
   padding: 20px;
   width: 75%;
+  border: 1px solid black;
+}
+
+.card-header{
+  border-bottom: 3px solid black;
+  
+} 
+
+h1 {
+  font-size: 4em;
+  padding-left: 40px;
+}
+
+i {
+  color: black;
+}
+
+@media (max-width: 769px) {
+  .container {
+    display: grid;
+    margin: 10px 0;
+    padding: 10px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    justify-items: center;
+    grid-gap: 20px;
+  
+  }
 }

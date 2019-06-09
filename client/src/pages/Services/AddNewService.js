@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react'
 import styled from 'styled-components'
-import { Form, FormField, TextInput, Box } from 'grommet'
+import { Form, FormField, TextInput, Select } from 'grommet'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import Button from '../../components/Button'
@@ -11,19 +11,23 @@ const FormContainer = styled.div`
    border: 1px solid black;
    padding: 20px;
 `
+const OPTIONS = ['Cuts', 'Color', 'HighLights', 'Kids', 'Wax', 'Misc'];
+
 
 const AddNewService = ({createService, setAlert, history}) => {
   
   const [formData, setFormData] = useState({
     name: '',
     price: '',
-    category: ''
+    category: '',
+    options: OPTIONS
   })
 
-  const { name, price, category } = formData
+  const { name, price, category, options} = formData
 
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
+  const onSelectChange = e => setFormData({ ...formData, category: e.value})
   const onSubmit = async e => {
     e.preventDefault();
     if (name === '') {
@@ -33,16 +37,11 @@ const AddNewService = ({createService, setAlert, history}) => {
     if (price === '') { 
       setAlert('Price is required', 'danger')
     }
-
-    if (category === '') {
-      setAlert('Categories are required', 'danger')
-    }
     
     createService(name, price, category)
     history.push('/services')
   }
- 
-  console.log(category)
+  
   return (
     <FormContainer>
 
@@ -56,23 +55,21 @@ const AddNewService = ({createService, setAlert, history}) => {
           />
      
           <TextInput 
-             onChange={e => onChange(e)}
+            onChange={e => onChange(e)}
             placeholder="price"
             name="price"
             value={price}
           />
    
-          <TextInput 
-            onChange={e => onChange(e)}
-            placeholder="category"
-            name="category"
+         <Select
             value={category}
-          />
-      
+            onChange={e => onSelectChange(e)}
+            options={options}
+         />
         <Button 
           buttonText="add"
-           style = {{ width: '100%', height: 40, backgroundColor: 'black', color: 'white', fontSize: 18}}
-           type="submit"
+          style = {{ width: '100%', height: 40, backgroundColor: 'black', color: 'white', fontSize: 18}}
+          type="submit"
         />
       </Form>
   
