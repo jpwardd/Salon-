@@ -15,6 +15,7 @@ import Backdrop from './components/Backdrop/Backdrop'
 import PrivateRoute from './components/routing/PrivateRoute'
 import AddNewService from './pages/Services/AddNewService'
 import CreateTicket from './pages/Tickets/CreateTicket'
+import './App.css'
 
 
 const App = () => {
