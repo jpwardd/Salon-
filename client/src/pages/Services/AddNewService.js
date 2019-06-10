@@ -1,16 +1,12 @@
 import React, { useState, useEffect} from 'react'
-import styled from 'styled-components'
-import { Form, FormField, TextInput, Select } from 'grommet'
+
+import { Form, Box, TextInput, Select, FormField } from 'grommet'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import Button from '../../components/Button'
 import { setAlert, getServices, createService } from '../../actions'
+import './AddNewService.css'
 
-const FormContainer = styled.div`
-   width: 75%;
-   border: 1px solid black;
-   padding: 20px;
-`
 const OPTIONS = ['Cuts', 'Color', 'HighLights', 'Kids', 'Wax', 'Misc'];
 
 
@@ -43,38 +39,53 @@ const AddNewService = ({createService, setAlert, history}) => {
   }
   
   return (
-    <FormContainer>
+    
+    <div className="ns-container">
+     <Box
+      align="center"
+      pad="0"
+      margin="0"
+     >
+      <h2 style={{ fontSize: "50px"}} className="title">New Service</h2>
+     </Box>
+      
+  
+       <Form className="ns-form-container" onSubmit={e => onSubmit(e)}>
+        <FormField>
 
-      <h3>Add A Service</h3>
-       <Form onSubmit={e => onSubmit(e)}>
           <TextInput 
             onChange={e => onChange(e)}
             placeholder="name"
             name="name"
             value={name}
           />
-     
+        </FormField>
+
+        <FormField>
           <TextInput 
             onChange={e => onChange(e)}
             placeholder="price"
             name="price"
             value={price}
           />
-   
-         <Select
-            value={category}
-            onChange={e => onSelectChange(e)}
-            options={options}
-         />
-        <Button 
-          buttonText="add"
-          style = {{ width: '100%', height: 40, backgroundColor: 'black', color: 'white', fontSize: 18}}
-          type="submit"
-        />
-      </Form>
-  
+        </FormField>
     
-    </FormContainer>
+          <Select
+              value={category}
+              onChange={e => onSelectChange(e)}
+              options={options}
+          />
+          <Box align="center">
+
+          <Button 
+            buttonText="add"
+            className="add-service-btn"
+            type="submit"
+          />
+          </Box>
+        </Form>
+     
+    </div>
   )
 }
 AddNewService.propTypes = {
