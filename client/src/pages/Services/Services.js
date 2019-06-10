@@ -8,12 +8,11 @@ import { getServices} from '../../actions'
 
 
 
-const Services = ({ getServices, setAlert, service: { services, loading} }) => {
+const Services = ({ getServices, service: { services, loading } }) => {
    useEffect(() => {
      getServices()
     }, [getServices])
   
-   
 
    let allServices = services.map(service => {
       return(
@@ -28,26 +27,18 @@ const Services = ({ getServices, setAlert, service: { services, loading} }) => {
     })  
 
   return (
-    
-   
-      <div className="container">
-        <Box
-          align="center"
-          animation="slideUp"
-        >
+    <div className="container">
+      <Box
+        align="center"
+      >
+        <h1 className="title">Services</h1>
+      </Box>
+      {allServices}
 
-          <h1 className="title">Services</h1>
-      
-        </Box>
-        {allServices}
-          <Box align="center" className="button-container">
-            <Link className="add-service" to="/services/new">
-                  add a service
-              </Link>
-          </Box>
-      </div>
-
-
+      <Link className="add-service" to="/services/new">
+        add a service
+      </Link>
+    </div>
   )
 }
 

@@ -15,7 +15,7 @@ const LoginContainer = styled.div `
   padding: 10px;
   margin-top: 50px;
   border: 1px solid black;
-  margin-top: 150px;
+
   ${media.desktop`
     width: 30%;
   `

@@ -1,0 +1,17 @@
+.ns-container {
+  box-shadow: 1px 0 10px rgba(0, 0, 0, 0.5);
+  margin: 50px;
+  padding: 20px;
+}
+
+.add-service-btn {
+  width: 90%;
+  height: 40px;
+  background: black;
+  color: white;
+  font-size: 20px;
+  font-family: 'Pacifico', cursive;
+  cursor: pointer;
+  margin: 20px;
+}
+
