@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({
+   owner: {
+     type: mongoose.Schema.Types.ObjectId,
+     ref: 'user'
+   },
   name: {
     type: String,
     required: true
@@ -13,6 +17,9 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
+  },
+  employee: {
+    type: Boolean
   },
   date: {
     type: Date,
