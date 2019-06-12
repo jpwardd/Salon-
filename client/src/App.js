@@ -15,7 +15,9 @@ import Backdrop from './components/Backdrop/Backdrop'
 import PrivateRoute from './components/routing/PrivateRoute'
 import AddNewService from './pages/Services/AddNewService'
 import CreateTicket from './pages/Tickets/CreateTicket'
+import CreateEmployees from './pages/Employees/CreateEmployees'
 import './App.css'
+import EmployeeLogin from './components/auth/EmployeeLogin';
 
 
 const App = () => {
@@ -45,10 +47,12 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/employee_login" component={EmployeeLogin} />
           <Route exact path="/register" component={Register} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute exact path="/services" component={Services} />
           <PrivateRoute exact path="/services/new" component={AddNewService} />
+          <PrivateRoute exact path="/employees/new" component={CreateEmployees} />
           <PrivateRoute exact path="/tickets/create" component={CreateTicket} />
         </Switch>
       </Router>

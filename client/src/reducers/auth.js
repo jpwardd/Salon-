@@ -27,8 +27,6 @@ export default function(state = initialState, action) {
       return { ...state, isAuthenticated: true, loading: false, isEmployee: true, employee: payload }
     case REGISTER_SUCCESS:
     case LOGIN_USER_SUCCESS:
-      localStorage.setItem('token', payload.token);
-      return { ...state, ...payload, isAuthenticated: true, loading: false }
     case LOGIN_EMPLOYEE_SUCCESS:
       localStorage.setItem('token', payload.token);
       return { ...state, ...payload, isAuthenticated: true, loading: false }

@@ -10,6 +10,7 @@ app.use(express.json({ extended: false }));
 
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/employees', require('./routes/api/employees'));
+app.use('/api/employeeAuth', require('./routes/api/employeeAuth'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/services', require('./routes/api/services'));
 app.use('/api/clients', require('./routes/api/clients'));

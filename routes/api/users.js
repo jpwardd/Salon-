@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator/check');
 const config = require('config');
+const auth = require('../../middleware/auth');
 
 const User = require('../../models/User');
 // POST api/users
@@ -60,5 +61,16 @@ router.post('/', [
     res.status(500).send('Server error')
   }
 })
+
+router.get('/', auth, async (req, res) => {
+  try {
+    const employees = await User.find({ user: req.user.id}).populate('employee', ['name'])
+    console.log(employees)
+    res.json(employees)
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error')
+  }
+});
 
 module.exports = router;
