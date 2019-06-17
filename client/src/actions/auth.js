@@ -9,7 +9,10 @@ import {
   LOGIN_FAIL,
   EMPLOYEE_LOADED,
   SET_CURRENT_USER,
-  LOGOUT_USER
+  LOGOUT_USER,
+  REGISTER_EMPLOYEE_FAIL,
+  LOGIN_EMPLOYEE_FAIL,
+  REGISTER_EMPLOYEE_SUCCESS
 } from './types'
 import { setAlert } from './alert'
 import setAuthToken from '../utils/setAuthToken'
@@ -41,7 +44,7 @@ export const loadEmployee = () => async dispatch => {
   }
 
   try {
-    const res = await axios.get('/api/employeeAuth');
+    const res = await axios.get('/api/auth/employees');
 
     dispatch({
       type: EMPLOYEE_LOADED,
@@ -55,14 +58,14 @@ export const loadEmployee = () => async dispatch => {
 }
 
 // Register User
-export const register = ({ name, email, password }) => async dispatch => {
+export const register = ({ name, email, color, employee, manager, owner, password }) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   }
   
-  const body = JSON.stringify({ name, email, password });
+  const body = JSON.stringify({ name, email, color, employee, manager, owner, password });
   
   try {
     const res = await axios.post('/api/users', body, config);
@@ -84,6 +87,38 @@ export const register = ({ name, email, password }) => async dispatch => {
     })
   }
 }
+
+export const registerEmployee = ({ name, email, color, password }) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+  
+  const body = JSON.stringify({ name, email, color, password });
+  
+  try {
+    const res = await axios.post('/api/employees', body, config);
+    
+    dispatch({
+      type: REGISTER_EMPLOYEE_SUCCESS,
+      payload: res.data
+    });
+
+    dispatch(loadUser());
+  } catch (err) {
+    const errors = err.response.data.errors;
+    
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
+    }
+    dispatch({
+      type: REGISTER_EMPLOYEE_FAIL
+    })
+  }
+}
+
+
 
 // Login User
 export const loginUser = (email, password) => async dispatch => {
@@ -116,6 +151,7 @@ export const loginUser = (email, password) => async dispatch => {
   }
 }
 
+
 export const loginEmployee = (email, password) => async dispatch => {
   const config = {
     headers: {
@@ -126,7 +162,7 @@ export const loginEmployee = (email, password) => async dispatch => {
   const body = JSON.stringify({ email, password });
   
   try {
-    const res = await axios.post('/api/employeeAuth', body, config);
+    const res = await axios.post('/api/auth/employees', body, config);
     
     dispatch({
       type: LOGIN_EMPLOYEE_SUCCESS,
@@ -141,7 +177,7 @@ export const loginEmployee = (email, password) => async dispatch => {
       errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
     }
     dispatch({
-      type: LOGIN_FAIL
+      type: LOGIN_EMPLOYEE_FAIL
     })
   }
 }

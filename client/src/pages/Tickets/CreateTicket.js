@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createTicket, setAlert, getClients, getServices, getEmployees} from '../../actions';
+import { createTicket, setAlert, getClients, getServices} from '../../actions';
 import { Form, FormField, TextArea, TextInput, Box, Select } from 'grommet';
 import styled from 'styled-components';
 import Button from '../../components/Button'
@@ -14,12 +14,11 @@ const FormContainer = styled.div `
 `
 
 
-const CreateTicket = ({ history, createTicket, setAlert, getClients, getEmployees, getServices, service: {services}, client: { clients }, employee: { employees }}) => {
+const CreateTicket = ({ history, createTicket, setAlert, getClients, getServices, service: {services}, client: { clients }, employee: { employees }}) => {
   useEffect(() => {
     getServices()
     getClients()
-    getEmployees()
-  }, [getServices, getClients, getEmployees])
+  }, [getServices, getClients])
 
   const [ticketData, setTicketData] = useState({
     service: [],
@@ -139,4 +138,4 @@ const mapStateToProps = state => ({
   client: state.client,
   employee: state.employee
 })
-export default connect(mapStateToProps, { createTicket, setAlert, getClients, getServices, getEmployees })(CreateTicket)
+export default connect(mapStateToProps, { createTicket, setAlert, getClients, getServices })(CreateTicket)

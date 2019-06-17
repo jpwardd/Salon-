@@ -37,7 +37,7 @@ export const createTicket = (service, client, employee, bookingInfo) => async di
 }
 
 export const getTickets = () => async dispatch => {
-  dispatch(loadUser())
+ 
   try {
     const res = await axios.get(`/api/tickets`)
 

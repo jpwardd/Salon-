@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react'
 
-import { Form, Box, TextInput, Select, FormField, CheckBox } from 'grommet'
+import { Form, Box, TextInput, FormField, CheckBox } from 'grommet'
 import { CirclePicker } from 'react-color';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import Button from '../../components/Button'
-import { setAlert, createEmployee, loadUser } from '../../actions'
+import { setAlert, register, loadUser } from '../../actions'
 import './CreateEmployee.css'
 
 
 const colors = ['#902EA8', '#19ADA9', '#DA8620', '#29C569', '#128FCC', '#F0544F', '#BEFFC7', '#315b63', '#B0413E', '#fbb7c0', '#FFEB3B', '#607D8B']
 
-const CreateEmployee = ({loadUser, createEmployee, setAlert, history}) => {
+
+const CreateEmployee = ({loadUser, register, setAlert, history}) => {
    useEffect(() => {
      loadUser()
    }, [loadUser])
@@ -21,12 +22,23 @@ const CreateEmployee = ({loadUser, createEmployee, setAlert, history}) => {
      name: '',
      email: '',
      color: '',
+     employee: false,
+     manager: false,
+     owner: false,
      password: '',
      password2: ''
    });
 
-  const { name, email, color, password, password2} = formData
+  const { name, email, color, employee, manager, owner, password, password2} = formData
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+
+  const ownerChange = e => setFormData({ ...formData, owner: e.target.checked})
+  const managerChange = e => setFormData({ ...formData, manager: e.target.checked})
+  const employeeChange = e => setFormData({ ...formData, employee: e.target.checked})
+
+
+
+
   const handleChangeComplete = color => setFormData({ ...formData, color: color.hex })
   const onSubmit = async e => {
     e.preventDefault();
@@ -35,11 +47,10 @@ const CreateEmployee = ({loadUser, createEmployee, setAlert, history}) => {
       setAlert('Passwords do not match', 'danger');
     }
 
-    createEmployee({ name, email, color, password });
-    history.push('/dashboard')
+    register({ name, email, color, employee, manager, owner, password });
+    // history.push('/dashboard')
   }
 
-  console.log(color)
 
   return (
     
@@ -82,6 +93,25 @@ const CreateEmployee = ({loadUser, createEmployee, setAlert, history}) => {
         />
         
         </Box>
+
+        <CheckBox
+          checked={manager}
+          label="manager"
+          name="manager"
+          onChange={e => managerChange(e)}
+        />
+        <CheckBox
+          checked={employee}
+          label="Employee"
+          name="employee"
+          onChange={e => employeeChange(e)}
+        />
+        <CheckBox
+          label="Owner"
+          checked={owner}
+          name="owner"
+          onChange={e => ownerChange(e)}
+        />
         <FormField>
           <TextInput 
             onChange={e => onChange(e)}
@@ -121,4 +151,4 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   user: state.auth
 })
-export default connect(mapStateToProps, {createEmployee, setAlert, loadUser})(CreateEmployee)
+export default connect(mapStateToProps, {register, setAlert, loadUser})(CreateEmployee)

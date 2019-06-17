@@ -7,7 +7,7 @@ import Dashboard from './pages/Dashboard/Dashboard'
 import Services from './pages/Services/Services'
 import { Provider } from 'react-redux'
 import store from './store'
-import { loadUser } from './actions/auth'
+import { loadUser, loadEmployee } from './actions/auth'
 
 import NavBar from './components/layout/NavBar';
 import SideDrawer from './components/SideDrawer/SideDrawer';
