@@ -9,14 +9,17 @@ const TicketSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  services: {
-    type: String,
-    ref: 'service',
+  service: {
+    type: [String],
     required: true
   },
   client: {
     type: String,
     required: true
+  },
+  employee: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'employee',
   },
   bookingInfo: {
     type: String

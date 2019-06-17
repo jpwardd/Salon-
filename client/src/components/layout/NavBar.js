@@ -2,24 +2,28 @@ import React, { Fragment } from 'react';
 import Image from '../Image'
 import { Link } from 'react-router-dom'
 import { Box } from 'grommet'
+import Button from '../Button'
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
 import './navbar.css'
+import { logoutUser } from '../../actions'
 import { connect } from 'react-redux'
 
 
 
-const NavBar = ({ auth: { isAuthenticated, loading }, drawerClickHandler}) => {
+const NavBar = ({ auth: { isAuthenticated, loading }, drawerClickHandler, logoutUser}) => {
 
+ 
   const authLinks = (
     <Fragment>
 
      <div className="navbar-navigation-items">
         <ul>
-          <Link to="/services">services</Link>
-          <Link to="/employees">employees</Link>
-          
-
+          <Link to="/dashboard">Home</Link>
+          <Link to="/open-tickets">Tickets</Link>
+          <Link to="/services">Services</Link>
+          <Button buttonText='logout' className="logout-button" onClick={logoutUser}/>
         </ul>
+
       </div>
       <div className="navbar-toggle-button">
           <DrawerToggleButton click={drawerClickHandler} />
@@ -58,4 +62,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(NavBar)
+export default connect(mapStateToProps, { logoutUser })(NavBar)

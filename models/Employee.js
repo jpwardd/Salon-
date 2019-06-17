@@ -7,6 +7,7 @@ const EmployeeSchema = new mongoose.Schema({
    },
   name: {
     type: String,
+    unique: true,
     required: true
   },
   email: {
@@ -14,13 +15,19 @@ const EmployeeSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  color: {
+    type: String,
+    required: true
+  },
   password: {
     type: String,
     required: true
   },
-  isEmployee: {
-    type: Boolean
-  },
+  tickets: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'tickets'
+  }],
+  
   date: {
     type: Date,
     default: Date.now

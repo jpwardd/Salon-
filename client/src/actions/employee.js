@@ -6,7 +6,7 @@ import { setAlert } from './alert'
 import { loadEmployee, loadUser } from "./auth";
 
 // Register Employee
-export const createEmployee = ({name, email, password }) => async dispatch => {
+export const createEmployee = ({name, email, color, password }) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -14,7 +14,7 @@ export const createEmployee = ({name, email, password }) => async dispatch => {
   }
 
 
-  const body = JSON.stringify({name, email, password });
+  const body = JSON.stringify({name, email, color, password });
   
   dispatch(loadUser())
   try {
@@ -40,7 +40,7 @@ export const createEmployee = ({name, email, password }) => async dispatch => {
 export const getEmployees = () => async dispatch => {
   dispatch(loadUser())
   try {
-    const res = await axios.get('/api/users')
+    const res = await axios.get('/api/employees')
 
     dispatch({
       type: GET_EMPLOYEES,

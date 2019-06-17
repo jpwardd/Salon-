@@ -10,7 +10,7 @@ const initialState = {
   employee: null,
   loading: true,
   error: {},
-  employee: []
+  employees: []
 }
 
 export default function(state = initialState, action) {

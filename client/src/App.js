@@ -3,7 +3,7 @@ import './components/layout/navbar.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
-import Dashboard from './pages/Dashboard/index'
+import Dashboard from './pages/Dashboard/Dashboard'
 import Services from './pages/Services/Services'
 import { Provider } from 'react-redux'
 import store from './store'
@@ -18,6 +18,7 @@ import CreateTicket from './pages/Tickets/CreateTicket'
 import CreateEmployees from './pages/Employees/CreateEmployees'
 import './App.css'
 import EmployeeLogin from './components/auth/EmployeeLogin';
+import Tickets from './pages/Tickets/Tickets';
 
 
 const App = () => {
@@ -52,7 +53,8 @@ const App = () => {
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute exact path="/services" component={Services} />
           <PrivateRoute exact path="/services/new" component={AddNewService} />
-          <PrivateRoute exact path="/employees/new" component={CreateEmployees} />
+          <PrivateRoute exact path="/employee/new" component={CreateEmployees} />
+          <PrivateRoute exact path="/open-tickets" component={Tickets} />
           <PrivateRoute exact path="/tickets/create" component={CreateTicket} />
         </Switch>
       </Router>
