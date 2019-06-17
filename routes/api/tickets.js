@@ -1,13 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
-const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator/check');
-const config = require('config');
-
 const Ticket = require('../../models/Ticket');
-const Employee = require('../../models/Employee');
-const User = require('../../models/User');
+
 // POST api/tickets
 router.post('/', [ auth, [
   check('service', 'Please add a service')
@@ -51,7 +47,7 @@ router.post('/', [ auth, [
 
 router.get('/', auth, async (req, res) => {
   try {
-    const tickets = await Ticket.find({ user: req.user.id}).populate('ticket')
+    const tickets = await Ticket.find().populate('ticket')
     
     res.json(tickets)
   } catch (err) {

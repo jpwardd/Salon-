@@ -2,12 +2,14 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 const User = require('../../models/User')
+const Employee = require('../../models/Employee')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs')
 const { check, validationResult } = require('express-validator/check');
 const config = require('config');
 
 // GET api/auth
+
 router.get('/', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password')
@@ -65,6 +67,8 @@ router.post('/', [
     res.status(500).send('Server error')
   }
 })
+
+
 
 
 module.exports = router
