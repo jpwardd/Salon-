@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { getTickets, getEmployees} from '../../actions'
+import { getTickets} from '../../actions'
 import { Link } from 'react-router-dom'
 import { Box, Button} from 'grommet'
 import PropTypes from 'prop-types'
@@ -9,11 +9,10 @@ import Card from '../../components/Card'
 import './Tickets.css'
 
 
-const Tickets = ({getTickets, getEmployees, ticket: { tickets }, employee: { employees }}) => {
+const Tickets = ({getTickets, ticket: { tickets }}) => {
   useEffect(() => {
     getTickets()
-    getEmployees()
-  }, [getTickets, getEmployees])
+  }, [getTickets])
 
   const [ticketData, setTicketData] = useState({
     completed: false
@@ -21,7 +20,6 @@ const Tickets = ({getTickets, getEmployees, ticket: { tickets }, employee: { emp
 
   const completedTickets = e => setTicketData({ ...ticketData, completed: true })
 
-  console.log(ticketData)
 
   let allTickets = tickets.map(ticket => {
       return (
@@ -53,13 +51,11 @@ const Tickets = ({getTickets, getEmployees, ticket: { tickets }, employee: { emp
 
 Tickets.propTypes = {
   getTickets: PropTypes.func.isRequired,
-  getEmployees: PropTypes.func.isRequired,
   
 }
 
 const mapStateToProps = state => ({
   ticket: state.ticket,
-  employee: state.employee
 })
 
-export default connect(mapStateToProps, { getTickets, getEmployees })(Tickets)
+export default connect(mapStateToProps, { getTickets })(Tickets)
