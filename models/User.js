@@ -18,9 +18,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  employee: {
-    type: Boolean
-  },
+  employees: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'employee'
+  }],
   date: {
     type: Date,
     default: Date.now

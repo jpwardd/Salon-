@@ -6,9 +6,11 @@ const { check, validationResult } = require('express-validator/check');
 const config = require('config');
 
 const Ticket = require('../../models/Ticket');
+const Employee = require('../../models/Employee');
+const User = require('../../models/User');
 // POST api/tickets
 router.post('/', [ auth, [
-  check('services', 'Please add a service')
+  check('service', 'Please add a service')
     .not()
     .isEmpty(),
   check('client', 'Please add a client')
@@ -19,20 +21,22 @@ router.post('/', [ auth, [
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  const { services, client, bookingInfo, date } = req.body;
+  const { service, client, employee, bookingInfo, date } = req.body;
   
   const ticketFields = {}
   
   ticketFields.user = req.user.id;
-
-  if (services) ticketFields.services = services;
+  
+  if (service) ticketFields.service = service;
   if (client) ticketFields.client = client;
+  if (employee) ticketFields.employee = employee;
   if (bookingInfo) ticketFields.bookingInfo = bookingInfo;
   if (date) ticketFields.date = date;
 
   try {
     // Create
     ticket = new Ticket(ticketFields);
+   
     await ticket.save();
     res.json(ticket)
   } catch(err) {
@@ -47,8 +51,9 @@ router.post('/', [ auth, [
 
 router.get('/', auth, async (req, res) => {
   try {
-    const services = await Ticket.find({ user: req.user.id}).populate('ticket', ['user', 'services', 'contact', 'date'])
-    res.json(services)
+    const tickets = await Ticket.find({ user: req.user.id}).populate('ticket')
+    
+    res.json(tickets)
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error')

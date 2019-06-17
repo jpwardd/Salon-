@@ -7,14 +7,15 @@ import axios from 'axios';
 import { setAlert } from './alert';
 import { loadUser } from './auth';
 
-export const createTicket = (user, contact, date, services, bookingInfo) => async dispatch => {
+export const createTicket = (service, client, employee, bookingInfo) => async dispatch => {
+  dispatch(loadUser())
   const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   }
 
-  const body = JSON.stringify({ user, contact, date, services, bookingInfo });
+  const body = JSON.stringify({ service, client, employee, bookingInfo });
 
   try {
     const res = await axios.post('/api/tickets', body, config)

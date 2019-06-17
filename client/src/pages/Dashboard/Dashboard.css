@@ -1,0 +1,12 @@
+.content{
+  /* display: grid;
+  grid-template-columns: 1fr;
+  height: 100vh; */
+}
+
+.ticket-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 10px;
+}

@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react'
 
-import { Form, Box, TextInput, Select, FormField } from 'grommet'
+import { Form, Box, TextInput, Select, FormField, CheckBox } from 'grommet'
+import { CirclePicker } from 'react-color';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import Button from '../../components/Button'
 import { setAlert, createEmployee, loadUser } from '../../actions'
+import './CreateEmployee.css'
 
+
+const colors = ['#902EA8', '#19ADA9', '#DA8620', '#29C569', '#128FCC', '#F0544F', '#BEFFC7', '#315b63', '#B0413E', '#fbb7c0', '#FFEB3B', '#607D8B']
 
 const CreateEmployee = ({loadUser, createEmployee, setAlert, history}) => {
    useEffect(() => {
@@ -16,24 +20,27 @@ const CreateEmployee = ({loadUser, createEmployee, setAlert, history}) => {
    const [formData, setFormData] = useState({
      name: '',
      email: '',
+     color: '',
      password: '',
      password2: ''
    });
 
-  const { name, email, password, password2} = formData
+  const { name, email, color, password, password2} = formData
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
-
+  const handleChangeComplete = color => setFormData({ ...formData, color: color.hex })
   const onSubmit = async e => {
     e.preventDefault();
 
     if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
-    } else {
-      createEmployee({ name, email, password });
-      history.push('/dashboard')
     }
+
+    createEmployee({ name, email, color, password });
+    history.push('/dashboard')
   }
-  
+
+  console.log(color)
+
   return (
     
     <div className="ns-container">
@@ -65,7 +72,16 @@ const CreateEmployee = ({loadUser, createEmployee, setAlert, history}) => {
             value={email}
           />
         </FormField>
+        <Box margin="5px">
 
+        <h3 className="color-title">Choose a color</h3>
+        <CirclePicker 
+          color={color}
+          onChangeComplete={handleChangeComplete}
+          colors={colors}
+        />
+        
+        </Box>
         <FormField>
           <TextInput 
             onChange={e => onChange(e)}

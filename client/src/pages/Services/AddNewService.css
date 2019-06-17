@@ -4,7 +4,7 @@
   padding: 20px;
 }
 
-.add-service-btn {
+.add-btn {
   width: 90%;
   height: 40px;
   background: black;
@@ -13,5 +13,6 @@
   font-family: 'Pacifico', cursive;
   cursor: pointer;
   margin: 20px;
+
 }
 

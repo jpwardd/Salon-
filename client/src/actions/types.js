@@ -10,6 +10,8 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
 export const LOGIN_EMPLOYEE_SUCCESS = 'LOGIN_EMPLOYEE_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const LOGOUT_USER = 'LOGOUT_USER';
 
 
 // Services

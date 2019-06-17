@@ -13,14 +13,17 @@ router.post('/', [ auth, [
   check('name', 'Name is required')
     .not()
     .isEmpty(),
-  check('email', 'Please include a valid email').isEmail(),
-  check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 })
+    check('email', 'Please include a valid email').isEmail(),
+    check('color', 'Colors are required')
+    .not()
+    .isEmpty(),
+    check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 }),
 ]], async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  const { name, email, password } = req.body;
+  const { name, email, color, password } = req.body;
 
   try {
     let employee = await Employee.findOne({ email });
@@ -36,15 +39,23 @@ router.post('/', [ auth, [
       owner,
       name,
       email,
+      color,
       password,
-      isEmployee
     });
 
     const salt = await bcrypt.genSalt(10);
 
     employee.password = await bcrypt.hash(password, salt);
     
+    const user = await User.findById(req.user.id)
+
+    employee.owner = user
+
     await employee.save();
+
+    user.employees.push(employee)
+
+    await user.save()
 
     const payload = {
       employee: {
@@ -58,7 +69,7 @@ router.post('/', [ auth, [
       { expiresIn: 360000 },
       (err, token) => {
         if(err) throw err;
-        res.json({ token });
+        res.json({employee, token})
       });
 
   } catch(err) {
@@ -67,14 +78,14 @@ router.post('/', [ auth, [
   }
 })
 
-// router.get('/', auth, async (req, res) => {
-//   try {
-//     const employees = await User.find({ employee: req.user.id}).populate('user', ['name'])
-//     res.json(services)
-//   } catch (err) {
-//     console.error(err.message);
-//     res.status(500).send('Server error')
-//   }
-// });
+router.get('/', auth, async (req, res) => {
+  try {
+    const employees = await Employee.find({ user: req.user._id}).populate('employee', ['name'])
+    res.json(employees)
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error')
+  }
+});
 
 module.exports = router;

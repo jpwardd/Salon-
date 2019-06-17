@@ -1,0 +1,12 @@
+.add-service-btn{
+  width: 100%;
+  background: black;
+  color: white;
+  font-size: 18px;
+  font-family: 'Pacifico', cursive;
+  height: 50px;
+}
+
+.color-title{
+  font-family: 'Pacifico', cursive;
+}

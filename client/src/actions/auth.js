@@ -7,7 +7,9 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_EMPLOYEE_SUCCESS,
   LOGIN_FAIL,
-  EMPLOYEE_LOADED
+  EMPLOYEE_LOADED,
+  SET_CURRENT_USER,
+  LOGOUT_USER
 } from './types'
 import { setAlert } from './alert'
 import setAuthToken from '../utils/setAuthToken'
@@ -143,3 +145,19 @@ export const loginEmployee = (email, password) => async dispatch => {
     })
   }
 }
+
+export const setCurrentUser = decoded => {
+  return {
+    type: SET_CURRENT_USER,
+    payload: decoded
+  };
+};
+
+export const logoutUser = () => dispatch => {
+  // Remove token from localStorage
+  dispatch({
+    type: LOGOUT_USER
+  })
+
+
+};

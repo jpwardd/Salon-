@@ -79,7 +79,7 @@ const AddNewService = ({createService, setAlert, history}) => {
 
           <Button 
             buttonText="add"
-            className="add-service-btn"
+            className="add-btn"
             type="submit"
           />
           </Box>

@@ -1,0 +1,59 @@
+.ticket-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+.tickets{
+  padding: 20px;
+}
+
+.ticket-wrapper{
+
+  border: 3px solid black;
+}
+
+.new-ticket-link{
+  text-decoration: none;
+  background: black;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  border-radius: 50px;
+  border: 3px solid black;
+}
+
+.page-title-container{
+  background: #dc7f9b;
+
+  padding: 50px;
+  border: 3px solid black;
+}
+
+.ticket-title{
+  font-family: 'Pacifico', cursive;
+  color: #ffffff;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 769px) {
+  .ticket-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 10px;
+    padding: 10px;
+  }
+
+  .ticket-title{
+    font-family: 'Pacifico', cursive;
+    font-size: 50px;
+    color: #ffffff;
+    padding: 0;
+    margin: 0;
+  }
+}

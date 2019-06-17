@@ -62,15 +62,6 @@ router.post('/', [
   }
 })
 
-router.get('/', auth, async (req, res) => {
-  try {
-    const employees = await User.find({ user: req.user.id}).populate('employee', ['name'])
-    console.log(employees)
-    res.json(employees)
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server error')
-  }
-});
+
 
 module.exports = router;
