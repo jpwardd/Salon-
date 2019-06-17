@@ -49,7 +49,7 @@ router.post('/', [ auth, [
 
 router.get('/', auth, async (req, res) => {
   try {
-    const services = await Service.find({ user: req.user.id}).populate('service', ['name', 'price'])
+    const services = await Service.find().populate('service', ['name', 'price'])
     res.json(services)
   } catch (err) {
     console.error(err.message);
