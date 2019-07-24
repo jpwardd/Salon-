@@ -1,0 +1,20 @@
+.clients-container{
+  margin: 0 auto;
+  padding: 50px;
+  width: 70%;
+  height: 500px;
+  overflow: scroll;
+
+}
+
+.search-container{
+  margin: 0 auto;
+}
+
+.client-cards{
+   box-shadow: 1px 0 5px rgba(0, 0, 0, 0.7);
+   height: 70px;
+   padding: 10px 0 10px 30px;
+   margin: 20px;
+
+}

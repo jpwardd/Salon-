@@ -8,11 +8,22 @@ import { getServices} from '../../actions'
 
 
 
-const Services = ({ getServices, service: { services, loading } }) => {
+const Services = ({ getServices, service: { services, loading }, user: { user } }) => {
    useEffect(() => {
      getServices()
     }, [getServices])
   
+
+
+  // Dry this up!!!
+    
+  let addService;
+  if (!user.employee === true) {
+    addService =  <div><Link className="add-service" to="/services/new"> Add a Service</Link></div>
+  } else {
+    addService = null
+
+  }
 
    let allServices = services.map(service => {
       return(
@@ -35,9 +46,11 @@ const Services = ({ getServices, service: { services, loading } }) => {
       </Box>
       {allServices}
 
-      <Link className="add-service" to="/services/new">
-        add a service
-      </Link>
+    <div>
+
+      {addService}
+    </div>
+     
     </div>
   )
 }

@@ -21,17 +21,15 @@ router.post('/', [ auth, [
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  const { firstName, lastName, phoneNumber, email, employee } = req.body;
+  const { firstName, lastName, phoneNumber, email } = req.body;
   
   const clientFields = {}
   
   clientFields.user = req.user.id;
-  
   if (firstName) clientFields.firstName = firstName;
   if (lastName) clientFields.lastName = lastName;
   if (phoneNumber) clientFields.phoneNumber = phoneNumber;
   if (email) clientFields.email = email;
-  if (employee) clientFields.employee = employee;
   
   try {
     // Create
@@ -48,12 +46,13 @@ router.post('/', [ auth, [
 
 router.get('/', auth, async (req, res) => {
   try {
-    const clients = await Client.find({ user: req.user.id }).populate('client', ['firstName', 'lastName', 'phoneNumber', 'email', 'employee'])
+    const clients = await Client.find().populate('client', ['user', 'firstName', 'lastName', 'phoneNumber', 'email'])
     res.json(clients)
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error')
   }
 });
+
 
 module.exports = router;

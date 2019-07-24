@@ -18,10 +18,6 @@ const ContactSchema = new mongoose.Schema({
   },
   email: {
     type: String
-  },
-  employee: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'employee'
   }
 })
 

@@ -17,8 +17,10 @@ import AddNewService from './pages/Services/AddNewService'
 import CreateTicket from './pages/Tickets/CreateTicket'
 import CreateEmployees from './pages/Employees/CreateEmployees'
 import './App.css'
-import EmployeeLogin from './components/auth/EmployeeLogin';
+
 import Tickets from './pages/Tickets/Tickets';
+import CreateClient from './pages/Clients/CreateClient';
+import Clients from './pages/Clients/Clients';
 
 
 const App = () => {
@@ -27,7 +29,7 @@ const App = () => {
   }, [])
   
    const [toggle, setToggle] = useState(false)
-
+  
   const drawerToggle = () => {
     setToggle(!toggle)
   }
@@ -40,7 +42,7 @@ const App = () => {
   return(
     <Provider store={store}>
       <Router>
-       <div className="container">
+       <div style={{ marginBottom: "100px"}}>
          <NavBar drawerClickHandler={drawerToggle} />
          <SideDrawer show={toggle} />
          {backdrop}
@@ -48,7 +50,6 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/employee_login" component={EmployeeLogin} />
           <Route exact path="/register" component={Register} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute exact path="/services" component={Services} />
@@ -56,6 +57,8 @@ const App = () => {
           <PrivateRoute exact path="/employee/new" component={CreateEmployees} />
           <PrivateRoute exact path="/open-tickets" component={Tickets} />
           <PrivateRoute exact path="/tickets/create" component={CreateTicket} />
+          <PrivateRoute exact path="/clients" component={Clients} />
+          <PrivateRoute exact path="/clients/new" component={CreateClient} />
         </Switch>
       </Router>
     </Provider>

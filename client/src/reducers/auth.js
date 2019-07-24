@@ -10,16 +10,20 @@ import {
   EMPLOYEE_LOADED,
   LOGOUT_USER,
   REGISTER_EMPLOYEE_SUCCESS,
-  REGISTER_EMPLOYEE_FAIL
+  REGISTER_EMPLOYEE_FAIL,
+  GET_USERS,
+  GET_USERS_FAIL
 } from '../actions/types'
 
 const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
   loading: true,
-  user: null,
+  user: {},
+  users: [],
   employee: null,
-  isEmployee: null
+  isEmployee: null,
+  error: {}
 }
 
 export default function(state = initialState, action) {
@@ -43,6 +47,10 @@ export default function(state = initialState, action) {
     case LOGOUT_USER:
       localStorage.removeItem('token');
        return { ...state, token: null, isAuthenticated: false, loading: false }
+    case GET_USERS: 
+      return { ...state, users: payload, loading: false }
+    case GET_USERS_FAIL:
+      return { ...state, error: payload, loading: false }
     default:
      return state;
   }

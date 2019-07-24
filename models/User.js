@@ -30,6 +30,9 @@ const UserSchema = new mongoose.Schema({
   owner: {
     type: Boolean,
   },
+  receptionist: {
+    type: Boolean
+  },
   date: {
     type: Date,
     default: Date.now
