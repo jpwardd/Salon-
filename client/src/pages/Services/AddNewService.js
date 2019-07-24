@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react'
 
-import { Form, Box, TextInput, Select, FormField } from 'grommet'
+import { Form, Box, TextInput, Select } from 'grommet'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import Button from '../../components/Button'
@@ -51,7 +51,7 @@ const AddNewService = ({createService, setAlert, history}) => {
       
   
        <Form className="ns-form-container" onSubmit={e => onSubmit(e)}>
-        <FormField>
+      
 
           <TextInput 
             onChange={e => onChange(e)}
@@ -59,16 +59,16 @@ const AddNewService = ({createService, setAlert, history}) => {
             name="name"
             value={name}
           />
-        </FormField>
+       
 
-        <FormField>
+      
           <TextInput 
             onChange={e => onChange(e)}
             placeholder="price"
             name="price"
             value={price}
           />
-        </FormField>
+      
     
           <Select
               value={category}

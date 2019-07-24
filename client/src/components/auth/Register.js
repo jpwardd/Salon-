@@ -1,6 +1,6 @@
 import React, { useState, Fragment} from 'react'
 import styled  from 'styled-components'
-import { Box, FormField, TextInput, Form } from 'grommet';
+import { Box, TextInput, Form } from 'grommet';
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setAlert, register } from '../../actions'
@@ -108,7 +108,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
           </Box>
           <Form onSubmit={e => onSubmit(e)}>
 
-            <FormField>
               <TextInput
                 type="text"
                 name="name"
@@ -116,9 +115,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                 value={name}
                 onChange={e => onChange(e)}
               />
-            </FormField>
 
-            <FormField>
             <TextInput
               type="email"
               name="email"
@@ -126,9 +123,8 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
               value={email}
               onChange={e => onChange(e)}
             />
-          </FormField>
 
-          <FormField>
+          
             <TextInput
               type="password"
               name="password"
@@ -136,9 +132,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
               value={password}
               onChange={e => onChange(e)}
             />
-          </FormField>
+   
 
-          <FormField>
+    
             <TextInput
               type="password"
               name="password2"
@@ -146,7 +142,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
               value={password2}
               onChange={e => onChange(e)}
             />
-          </FormField>
            <Button 
               buttonText="Register"
               style={{ width: '100%', height: 40, backgroundColor: 'black', color: 'white', fontSize: 18}}

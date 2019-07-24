@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createTicket, setAlert, getClients, getServices} from '../../actions';
-import { Form, FormField, TextArea, TextInput, Box, Select } from 'grommet';
+import { Form, TextArea, TextInput, Box, Select } from 'grommet';
 import styled from 'styled-components';
 import Button from '../../components/Button'
 import './CreateTicket.css'
@@ -78,7 +78,7 @@ const CreateTicket = ({ history, createTicket, setAlert, getClients, getServices
         ))}
       </Box>
        <Form className="ns-form-container" onSubmit={e => onSubmit(e)}>
-        <FormField>
+      
           <Select
             placeholder="Services"
             multiple={true}
@@ -86,25 +86,25 @@ const CreateTicket = ({ history, createTicket, setAlert, getClients, getServices
             onChange={e => onServiceSelectChange(e)}
             options={serviceOptions}
           />
-        </FormField>
+  
 
-        <FormField>
+   
          <Select 
            placeholder="Client"
            value={client}
            onChange={e => onClientSelectChange(e)}
            options={clientOptions}
          />
-        </FormField>
+  
 
-        <FormField>
+       
          {/* <Select 
            placeholder="Employee"
            value={employee}
            onChange={e => onEmployeeSelectChange(e)}
            options={employeeOptions}
          /> */}
-        </FormField>
+
        
           <TextArea 
             onChange={e => onChange(e)}

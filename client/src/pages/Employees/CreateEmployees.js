@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { Form, Box, TextInput, FormField, CheckBox } from 'grommet'
+import { Form, Box, TextInput, CheckBox } from 'grommet'
 import { CirclePicker } from 'react-color';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
@@ -67,7 +67,7 @@ const CreateEmployee = ({loadUser, register, setAlert, history}) => {
       
   
        <Form className="ns-form-container" onSubmit={e => onSubmit(e)}>
-        <FormField>
+     
 
           <TextInput 
             onChange={e => onChange(e)}
@@ -75,16 +75,16 @@ const CreateEmployee = ({loadUser, register, setAlert, history}) => {
             name="name"
             value={name}
           />
-        </FormField>
+      
 
-        <FormField>
+     
           <TextInput 
             onChange={e => onChange(e)}
             placeholder="email"
             name="email"
             value={email}
           />
-        </FormField>
+
         <Box margin="5px">
 
         <h3 className="color-title">Choose a color</h3>
@@ -120,23 +120,23 @@ const CreateEmployee = ({loadUser, register, setAlert, history}) => {
           name="receptionist"
           onChange={e => receptionistChange(e)}
         />
-        <FormField>
+      
           <TextInput 
             onChange={e => onChange(e)}
             placeholder="password"
             name="password"
             value={password}
           />
-        </FormField>
+     
 
-        <FormField>
+
           <TextInput 
             onChange={e => onChange(e)}
             placeholder="re-enter password"
             name="password2"
             value={password2}
           />
-        </FormField>
+      
     
           <Box align="center">
 
