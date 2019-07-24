@@ -7,7 +7,7 @@ import Dashboard from './pages/Dashboard/Dashboard'
 import Services from './pages/Services/Services'
 import { Provider } from 'react-redux'
 import store from './store'
-import { loadUser, loadEmployee } from './actions/auth'
+import { loadUser} from './actions/auth'
 
 import NavBar from './components/layout/NavBar';
 import SideDrawer from './components/SideDrawer/SideDrawer';
@@ -27,9 +27,9 @@ const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
   }, [])
-  
-   const [toggle, setToggle] = useState(false)
-  
+
+  const [toggle, setToggle] = useState(false)
+
   const drawerToggle = () => {
     setToggle(!toggle)
   }
@@ -39,14 +39,14 @@ const App = () => {
     backdrop = <Backdrop click={drawerToggle} />
   }
 
-  return(
+  return (
     <Provider store={store}>
       <Router>
-       <div style={{ marginBottom: "100px"}}>
-         <NavBar drawerClickHandler={drawerToggle} />
-         <SideDrawer show={toggle} />
-         {backdrop}
-       </div>
+        <div style={{ marginBottom: "100px" }}>
+          <NavBar drawerClickHandler={drawerToggle} />
+          <SideDrawer show={toggle} />
+          {backdrop}
+        </div>
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/login" component={Login} />

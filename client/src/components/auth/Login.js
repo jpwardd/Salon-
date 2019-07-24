@@ -1,20 +1,19 @@
 import React, { useState, Fragment} from 'react'
 import styled  from 'styled-components'
-import { Box, FormField, TextInput, Form } from 'grommet';
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { Box, TextInput, Form } from 'grommet';
 import { setAlert, loginUser } from '../../actions'
 import PropTypes from 'prop-types'
 import Alert from '../layout/Alert'
 import Button from '../Button'
-import Image from '../Image'
 import { media, logoURL} from '../../media'
 
 const LoginContainer = styled.div `
   background-color: #ffffff;
   padding: 10px;
   margin-top: 50px;
-  height: 50%;
+  height: 100%;
   border: 1px solid black;
   margin: 20px;
 
@@ -102,30 +101,30 @@ const Login = ({ setAlert, loginUser, isAuthenticated }) => {
 
   return (
     <Fragment>
-      <Box 
-        align="center"
+      <Box align="center"
+        
       >
         <LoginContainer>
           <InputContainer>
             <Box align="center">
-              <Image source={logoURL} alt="Salon Industria Logo"/>
+              <img src={logoURL} alt="Salon Industria Logo"/>
              
             </Box>
             <Form onSubmit={e => onSubmit(e)}>
 
-              <FormField>
+              <Box margin="10px">
                 <TextInput
             
-                  plain={false}
+               
                   placeholder="email"
                   type="text"
                   name="email"
                   value={email}
                   onChange={e => onChange(e)}
                 />
-              </FormField>
+              </Box>
 
-              <FormField>
+              <Box margin="10px">
               <TextInput
                 placeholder="password"
                 type="password"
@@ -133,7 +132,7 @@ const Login = ({ setAlert, loginUser, isAuthenticated }) => {
                 value={password}
                 onChange={e => onChange(e)}
               />
-            </FormField>
+            </Box>
 
             <Button 
               buttonText="Login"

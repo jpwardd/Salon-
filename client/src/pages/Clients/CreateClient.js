@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Box, TextInput, Form, FormField } from 'grommet'
+import { Box, TextInput, Form } from 'grommet'
 import { connect } from 'react-redux'
 import { createClient, setAlert } from '../../actions'
 
@@ -44,7 +44,7 @@ const CreateClient = ({ createClient, setAlert, history }) => {
       
   
        <Form className="nc-form-container" onSubmit={e => onSubmit(e)}>
-        <FormField>
+     
 
           <TextInput 
             onChange={e => onChange(e)}
@@ -52,34 +52,34 @@ const CreateClient = ({ createClient, setAlert, history }) => {
             name="firstName"
             value={firstName}
           />
-        </FormField>
 
-        <FormField>
+
+   
           <TextInput 
             onChange={e => onChange(e)}
             placeholder="last name"
             name="lastName"
             value={lastName}
           />
-        </FormField>
+ 
         
-        <FormField>
+   
           <TextInput 
             onChange={e => onChange(e)}
             placeholder="phone number"
             name="phoneNumber"
             value={phoneNumber}
           />
-        </FormField>
+    
         
-        <FormField>
+    
           <TextInput 
             onChange={e => onChange(e)}
             placeholder="email"
             name="email"
             value={email}
           />
-        </FormField>
+     
     
           <Box align="center">
           <Button 
