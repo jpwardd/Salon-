@@ -5,14 +5,13 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_USER_SUCCESS,
-  LOGIN_EMPLOYEE_SUCCESS,
   LOGIN_FAIL,
   EMPLOYEE_LOADED,
-  SET_CURRENT_USER,
   LOGOUT_USER,
   REGISTER_EMPLOYEE_FAIL,
-  LOGIN_EMPLOYEE_FAIL,
-  REGISTER_EMPLOYEE_SUCCESS
+  GET_USERS,
+  REGISTER_EMPLOYEE_SUCCESS,
+  GET_USERS_FAIL
 } from './types'
 import { setAlert } from './alert'
 import setAuthToken from '../utils/setAuthToken'
@@ -58,14 +57,14 @@ export const loadEmployee = () => async dispatch => {
 }
 
 // Register User
-export const register = ({ name, email, color, employee, manager, owner, password }) => async dispatch => {
+export const register = ({ name, email, color, employee, manager, owner, receptionist,  password }) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   }
   
-  const body = JSON.stringify({ name, email, color, employee, manager, owner, password });
+  const body = JSON.stringify({ name, email, color, employee, manager, owner, receptionist, password });
   
   try {
     const res = await axios.post('/api/users', body, config);
@@ -152,42 +151,21 @@ export const loginUser = (email, password) => async dispatch => {
 }
 
 
-export const loginEmployee = (email, password) => async dispatch => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }
-  
-  const body = JSON.stringify({ email, password });
-  
+export const getUsers = () => async dispatch => {
   try {
-    const res = await axios.post('/api/auth/employees', body, config);
-    
-    dispatch({
-      type: LOGIN_EMPLOYEE_SUCCESS,
-      payload: res.data
-    });
+    const res = await axios.get(`/api/users`)
 
-    dispatch(loadEmployee());
-  } catch (err) {
-    const errors = err.response.data.errors;
-    
-    if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
-    }
     dispatch({
-      type: LOGIN_EMPLOYEE_FAIL
+      type: GET_USERS,
+      payload: res.data
+    })
+  } catch (err) {
+     dispatch({
+      type: GET_USERS_FAIL,
+      payload: { msg: err.response.statusText, status: err.response.status}
     })
   }
 }
-
-export const setCurrentUser = decoded => {
-  return {
-    type: SET_CURRENT_USER,
-    payload: decoded
-  };
-};
 
 export const logoutUser = () => dispatch => {
   // Remove token from localStorage

@@ -8,17 +8,18 @@ import { setAlert } from './alert'
 import { loadUser } from './auth'
 
 
-export const createClient = (firstName, lastName, phoneNumber, email, employee) => async dispatch => {
+export const createClient = (firstName, lastName, phoneNumber, email) => async dispatch => {
+  dispatch(loadUser())
   const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   }
 
- const body = JSON.stringify({ firstName, lastName, phoneNumber, email, employee })
+ const body = JSON.stringify({ firstName, lastName, phoneNumber, email })
 
   try {
-    const res = await axios.post('/api/contacts', body, config)
+    const res = await axios.post('/api/clients', body, config)
 
     dispatch({
       type:  CREATE_CLIENT_SUCCESS,

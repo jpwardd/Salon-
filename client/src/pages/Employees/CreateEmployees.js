@@ -25,16 +25,18 @@ const CreateEmployee = ({loadUser, register, setAlert, history}) => {
      employee: false,
      manager: false,
      owner: false,
+     receptionist: false,
      password: '',
      password2: ''
    });
 
-  const { name, email, color, employee, manager, owner, password, password2} = formData
+  const { name, email, color, employee, manager, owner, receptionist, password, password2} = formData
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
   const ownerChange = e => setFormData({ ...formData, owner: e.target.checked})
   const managerChange = e => setFormData({ ...formData, manager: e.target.checked})
   const employeeChange = e => setFormData({ ...formData, employee: e.target.checked})
+  const receptionistChange = e => setFormData({ ...formData, receptionist: e.target.checked})
 
 
 
@@ -47,7 +49,7 @@ const CreateEmployee = ({loadUser, register, setAlert, history}) => {
       setAlert('Passwords do not match', 'danger');
     }
 
-    register({ name, email, color, employee, manager, owner, password });
+    register({ name, email, color, employee, manager, owner, receptionist, password });
     // history.push('/dashboard')
   }
 
@@ -111,6 +113,12 @@ const CreateEmployee = ({loadUser, register, setAlert, history}) => {
           checked={owner}
           name="owner"
           onChange={e => ownerChange(e)}
+        />
+        <CheckBox
+          label="Owner"
+          checked={receptionist}
+          name="receptionist"
+          onChange={e => receptionistChange(e)}
         />
         <FormField>
           <TextInput 

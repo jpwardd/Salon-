@@ -19,7 +19,7 @@ router.post('/', [
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  const { name, email, employee, manager, owner, color, password } = req.body;
+  const { name, email, employee, manager, owner, receptionist, color, password } = req.body;
 
   try {
     let user = await User.findOne({ email });
@@ -35,6 +35,7 @@ router.post('/', [
       employee,
       owner,
       manager,
+      receptionist,
       color,
       password
     });
@@ -66,6 +67,15 @@ router.post('/', [
   }
 })
 
+router.get('/', auth, async (req, res) => {
+  try {
+    const users = await User.find().select('-password')
+    res.json(users);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error')
+  }
+});
 
 
 module.exports = router;

@@ -14,10 +14,12 @@ const LoginContainer = styled.div `
   background-color: #ffffff;
   padding: 10px;
   margin-top: 50px;
+  height: 50%;
   border: 1px solid black;
+  margin: 20px;
 
   ${media.desktop`
-    width: 30%;
+    width: 40%;
   `
   }
   ${media.tablet`
@@ -50,7 +52,7 @@ const NeedAccount = styled.div`
   border-bottom: 20px solid black;
 
   ${media.desktop`
-    width: 30%;
+    width: 40%;
   `
   }
   ${media.tablet`
@@ -107,7 +109,7 @@ const Login = ({ setAlert, loginUser, isAuthenticated }) => {
           <InputContainer>
             <Box align="center">
               <Image source={logoURL} alt="Salon Industria Logo"/>
-              <h3>Ticket Manager</h3>
+             
             </Box>
             <Form onSubmit={e => onSubmit(e)}>
 
@@ -145,15 +147,7 @@ const Login = ({ setAlert, loginUser, isAuthenticated }) => {
   
 
       </Box>
-      <Box 
-        align="center"
     
-      >
-        <NeedAccount>
-          <h3>Don't have an account?  <Link style={{ color: '#dc7f9b', textDecoration: 'none'}} to="/register">sign up</Link></h3>
-        </NeedAccount>
-   
-      </Box>
     </Fragment>
   )
 }

@@ -14,7 +14,7 @@ const FormContainer = styled.div `
 `
 
 
-const CreateTicket = ({ history, createTicket, setAlert, getClients, getServices, service: {services}, client: { clients }, employee: { employees }}) => {
+const CreateTicket = ({ history, createTicket, setAlert, getClients, getServices, service: {services}, client: { clients }}) => {
   useEffect(() => {
     getServices()
     getClients()
@@ -60,9 +60,7 @@ const CreateTicket = ({ history, createTicket, setAlert, getClients, getServices
     return client.firstName + " " + client.lastName
   })
 
-  let employeeOptions = employees.map(employee => {
-    return employee._id
-  })
+
   
   return (
     <div className="ns-container">
@@ -100,12 +98,12 @@ const CreateTicket = ({ history, createTicket, setAlert, getClients, getServices
         </FormField>
 
         <FormField>
-         <Select 
+         {/* <Select 
            placeholder="Employee"
            value={employee}
            onChange={e => onEmployeeSelectChange(e)}
            options={employeeOptions}
-         />
+         /> */}
         </FormField>
        
           <TextArea 
@@ -136,6 +134,5 @@ CreateTicket.propTypes = {
 const mapStateToProps = state => ({
   service: state.service,
   client: state.client,
-  employee: state.employee
 })
 export default connect(mapStateToProps, { createTicket, setAlert, getClients, getServices })(CreateTicket)

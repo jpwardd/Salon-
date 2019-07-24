@@ -15,7 +15,8 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGIN_EMPLOYEE_FAIL = 'LOGIN_EMPLOYEE_FAIL'
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
-
+export const GET_USERS = 'GET_USERS'
+export const GET_USERS_FAIL = 'GET_USERS_FAIL'
 
 // Services
 export const CREATE_SERVICE_SUCCESS = 'CREATE_SERVICE_FAIL';

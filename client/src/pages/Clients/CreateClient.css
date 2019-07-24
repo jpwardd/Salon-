@@ -1,11 +1,16 @@
-.ns-container {
-  margin-top: 10px;
+.nc-container {
+  position: relative;
   box-shadow: 1px 0 10px rgba(0, 0, 0, 0.5);
-  margin: 50px;
+  margin: 100px 20px;
   padding: 20px;
 }
 
-.add-btn {
+.nc-form-container {
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.nc-add-btn {
   width: 90%;
   height: 40px;
   background: black;
@@ -14,6 +19,4 @@
   font-family: 'Pacifico', cursive;
   cursor: pointer;
   margin: 20px;
-
 }
-
