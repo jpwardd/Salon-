@@ -14,10 +14,10 @@ import {
   GET_USERS_FAIL
 } from './types'
 import { setAlert } from './alert'
-import setAuthToken from '../utils/setAuthToken'
+import setAuthToken from './utils/setAuthToken'
 
 // Load User
-export const loadUser = () => async dispatch => {
+export const loadUser = () => async (dispatch) => {
   if(localStorage.token) {
     setAuthToken(localStorage.token);
   }
@@ -37,7 +37,7 @@ export const loadUser = () => async dispatch => {
 }
 
 // Load Employee
-export const loadEmployee = () => async dispatch => {
+export const loadEmployee = () => async (dispatch) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }

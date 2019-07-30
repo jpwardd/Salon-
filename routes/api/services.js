@@ -47,7 +47,7 @@ router.post('/', [ auth, [
 // description: get all of the services
 // @access private
 
-router.get('/', auth, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const services = await Service.find().populate('service', ['name', 'price'])
     res.json(services)

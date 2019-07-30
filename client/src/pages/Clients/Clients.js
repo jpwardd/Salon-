@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getClients, } from '../../actions'
-import { Box, TextInput, Form, Button, Image} from 'grommet'
+import { Box, TextInput} from 'grommet'
 import './Clients.css'
 
 const Clients = ({ getClients, client: { clients } }) => {
