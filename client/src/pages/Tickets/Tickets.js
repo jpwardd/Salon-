@@ -4,8 +4,6 @@ import { getTickets} from '../../actions'
 import { Link } from 'react-router-dom'
 import { Box, Button} from 'grommet'
 import PropTypes from 'prop-types'
-import Card from '../../components/Card'
-
 import './Tickets.css'
 
 

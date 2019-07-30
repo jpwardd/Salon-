@@ -5,7 +5,6 @@
   grid-template-rows: auto;
   justify-items: center;
   grid-gap: 10px;
-  box-shadow: 1px 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .form-container {

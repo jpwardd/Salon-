@@ -15,7 +15,7 @@ const LoginContainer = styled.div `
   margin-top: 50px;
   height: 100%;
   border: 1px solid black;
-  margin: 20px;
+  margin: 70px 20px 20px 20px;
 
   ${media.desktop`
     width: 40%;
@@ -146,7 +146,10 @@ const Login = ({ setAlert, loginUser, isAuthenticated }) => {
   
 
       </Box>
-    
+      <Box align="center">
+
+        <NeedAccount />
+      </Box>
     </Fragment>
   )
 }

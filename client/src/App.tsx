@@ -6,8 +6,7 @@ import Register from './components/auth/Register';
 import Dashboard from './pages/Dashboard/Dashboard'
 import Services from './pages/Services/Services'
 import { Provider } from 'react-redux'
-import store from './store'
-import { loadUser} from './actions/auth'
+import { loadUser} from '../src/actions'
 
 import NavBar from './components/layout/NavBar';
 import SideDrawer from './components/SideDrawer/SideDrawer';
@@ -21,16 +20,18 @@ import './App.css'
 import Tickets from './pages/Tickets/Tickets';
 import CreateClient from './pages/Clients/CreateClient';
 import Clients from './pages/Clients/Clients';
+import store from './store/store';
 
 
-const App = () => {
+
+const App: React.FC = () => {
   useEffect(() => {
     store.dispatch(loadUser());
   }, [])
 
   const [toggle, setToggle] = useState(false)
 
-  const drawerToggle = () => {
+  const drawerToggle = (): void => {
     setToggle(!toggle)
   }
 

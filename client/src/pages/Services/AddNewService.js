@@ -1,16 +1,16 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState} from 'react'
 
 import { Form, Box, TextInput, Select } from 'grommet'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import Button from '../../components/Button'
-import { setAlert, getServices, createService } from '../../actions'
+import { setAlert, getServices } from '../../actions'
 import './AddNewService.css'
 
 const OPTIONS = ['Cuts', 'Color', 'HighLights', 'Kids', 'Wax', 'Misc'];
 
 
-const AddNewService = ({createService, setAlert, history}) => {
+const AddNewService = ({setAlert, history}) => {
   
   const [formData, setFormData] = useState({
     name: '',
@@ -34,7 +34,7 @@ const AddNewService = ({createService, setAlert, history}) => {
       setAlert('Price is required', 'danger')
     }
     
-    createService(name, price, category)
+    // createService(name, price, category)
     history.push('/services')
   }
   
@@ -48,20 +48,14 @@ const AddNewService = ({createService, setAlert, history}) => {
      >
       <h2 style={{ fontSize: "50px"}} className="title">New Service</h2>
      </Box>
-      
-  
        <Form className="ns-form-container" onSubmit={e => onSubmit(e)}>
-      
-
           <TextInput 
             onChange={e => onChange(e)}
             placeholder="name"
             name="name"
             value={name}
           />
-       
-
-      
+    
           <TextInput 
             onChange={e => onChange(e)}
             placeholder="price"
@@ -97,4 +91,4 @@ AddNewService.propTypes = {
 const mapStateToProps = state => ({
   service: state.service
 })
-export default connect(mapStateToProps, {createService, getServices, setAlert})(AddNewService)
+export default connect(mapStateToProps, {getServices, setAlert})(AddNewService)

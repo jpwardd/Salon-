@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 import { Form, Box, TextInput, CheckBox } from 'grommet'
 import { CirclePicker } from 'react-color';
 import {connect} from 'react-redux'
-import PropTypes from 'prop-types'
 import Button from '../../components/Button'
 import { setAlert, register, loadUser } from '../../actions'
 import './CreateEmployee.css'
